@@ -84,22 +84,22 @@ fun StuddyBuddyNavigation() {
         val padding = it
         NavHost(navController = navController, startDestination = StuddyBuddyScreen.LoginScreen.name) {
             composable(StuddyBuddyScreen.LoginScreen.name) {
-                LoginScreen(onConfirmClick = { navController.navigate(StuddyBuddyScreen.HomeScreen.name)})
+                LoginScreen(onConfirmClick = { navController.navigate(StuddyBuddyScreen.HomeScreen.name)}, onRegisterClick = { navController.navigate(StuddyBuddyScreen.RegisterScreen.name)})
             }
             composable(StuddyBuddyScreen.RegisterScreen.name) {
-                RegisterScreen()
+                RegisterScreen(onRegisterClick = { navController.navigate(StuddyBuddyScreen.HomeScreen.name)} )
             }
             composable(StuddyBuddyScreen.HomeScreen.name) {
                 HomeScreen(onFindBuddyClick = {navController.navigate(StuddyBuddyScreen.BuddyScreen.name)}, onFindMentorClick = {navController.navigate(StuddyBuddyScreen.BijlesScreen.name)})
             }
             composable(StuddyBuddyScreen.BuddyScreen.name) {
-                BuddyScreen(getUsers(), onclickDetail = { navController.navigate(StuddyBuddyScreen.BuddyDetailScreen.name)})
+                BuddyScreen(getUsers(), onclickDetail = { navController.navigate(StuddyBuddyScreen.BuddyDetailScreen.name)}, onFilterClicked = { navController.navigate(StuddyBuddyScreen.VakScreen.name)} ,onChatClicked = {navController.navigate(StuddyBuddyScreen.InboxScreen.name)})
             }
             composable(StuddyBuddyScreen.BuddyDetailScreen.name) {
                 BuddyDetailScreen()
             }
             composable(StuddyBuddyScreen.VakScreen.name) {
-                VakkenScreen()
+                VakkenScreen(onGoNext = { navController.navigate(StuddyBuddyScreen.BuddyScreen.name)})
             }
             composable(StuddyBuddyScreen.BijlesScreen.name) {
                 MentorScreen(getUsers(), onclickDetail = { navController.navigate(StuddyBuddyScreen.BuddyDetailScreen.name)}, onFilterClicked = { navController.navigate(StuddyBuddyScreen.VakScreen.name)} ,onChatClicked = {navController.navigate(StuddyBuddyScreen.InboxScreen.name)})
