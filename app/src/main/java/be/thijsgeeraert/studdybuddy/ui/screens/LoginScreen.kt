@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.sp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginPage(
+fun LoginScreen(
     onConfirmClick: (String, String) -> Unit = { _, _ -> },
     onCancelClick: () -> Unit = {},
     onRegisterClick: () -> Unit = {}
