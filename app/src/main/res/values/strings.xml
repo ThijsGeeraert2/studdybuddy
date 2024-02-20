@@ -37,4 +37,5 @@
     <string name="about_me">about me</string>
     <string name="subjects_mentor">subjects mentor</string>
     <string name="subjects_buddy">subjects buddy</string>
+    <string name="mentors">mentors</string>
 </resources>
