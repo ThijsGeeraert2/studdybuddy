@@ -2,6 +2,7 @@ package be.thijsgeeraert.studdybuddy.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -27,7 +28,7 @@ data class Buddy(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BuddyScreen(buddies: List<User>) {
+fun BuddyScreen(buddies: List<User>, onclickDetail: () -> Unit = {}) {
     // Replace with actual icons
     val userIcon: Painter = painterResource(id = R.drawable.noun_mentor_1112698)
     val starIcon: Painter = painterResource(id = R.drawable.noun_star_5947137)
@@ -63,7 +64,8 @@ fun BuddyScreen(buddies: List<User>) {
                 name = buddy.voornaam,
                 rating = buddy.rating,
                 field = buddy.vakken,
-                starIcon = starIcon
+                starIcon = starIcon,
+                onClick = onclickDetail
             )
         }
     }
@@ -75,12 +77,14 @@ fun BuddyItem(
     name: String,
     rating: Int,
     field: List<Vak>,
+    onClick: () -> Unit = {},
     starIcon: Painter
 ) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp),
+            .padding(vertical = 8.dp)
+            .clickable { onClick() },
         shape = RoundedCornerShape(8.dp),
         elevation = CardDefaults.elevatedCardElevation(defaultElevation = 2.dp)
     ) {

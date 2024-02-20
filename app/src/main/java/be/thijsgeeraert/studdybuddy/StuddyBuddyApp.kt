@@ -74,7 +74,7 @@ fun StuddyBuddyNavigation() {
                 HomeScreen(onFindBuddyClick = {navController.navigate(StuddyBuddyScreen.BuddyScreen.name)})
             }
             composable(StuddyBuddyScreen.BuddyScreen.name) {
-                BuddyScreen(getUsers())
+                BuddyScreen(getUsers(), onclickDetail = { navController.navigate(StuddyBuddyScreen.BuddyDetailScreen.name)})
             }
             composable(StuddyBuddyScreen.BuddyDetailScreen.name) {
                 BuddyDetailScreen()
