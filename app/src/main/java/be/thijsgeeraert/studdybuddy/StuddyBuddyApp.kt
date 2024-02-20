@@ -19,6 +19,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import be.thijsgeeraert.studdybuddy.data.MockUp.getUsers
 import be.thijsgeeraert.studdybuddy.ui.screens.BijlesScreen
 import be.thijsgeeraert.studdybuddy.ui.screens.BuddyDetailScreen
 import be.thijsgeeraert.studdybuddy.ui.screens.BuddyScreen
@@ -70,10 +71,10 @@ fun StuddyBuddyNavigation() {
                 RegisterScreen()
             }
             composable(StuddyBuddyScreen.HomeScreen.name) {
-                HomeScreen()
+                HomeScreen(onFindBuddyClick = {navController.navigate(StuddyBuddyScreen.BuddyScreen.name)})
             }
             composable(StuddyBuddyScreen.BuddyScreen.name) {
-                //BuddyScreen()
+                BuddyScreen(getUsers())
             }
             composable(StuddyBuddyScreen.BuddyDetailScreen.name) {
                 BuddyDetailScreen()
