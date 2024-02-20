@@ -1,6 +1,51 @@
 package be.thijsgeeraert.studdybuddy.data
 
 object MockUp {
+
+    data class Message(
+        val sender: String,
+        val subject: String,
+        val recipient: String,
+        val content: String,
+        val timestamp: String // Assuming timestamp is a string for simplicity
+    )
+
+    fun getMessages(): List<Message> {
+        return listOf(
+            Message(
+                sender = "Jan Jansen",
+                subject = "Problem Solving",
+                recipient = "Kees Klaassen",
+                content = "Heb je hulp nodig met Wiskunde?",
+                timestamp = "10:15 AM"
+            ),
+            Message(
+                sender = "Kees Klaassen",
+                subject = "Full Stack Dev",
+                recipient = "Jan Jansen",
+                content = "Ja, zou geweldig zijn! Wanneer ben je beschikbaar?",
+                timestamp = "10:17 AM"
+            ),
+            // ... Add more messages here
+            Message(
+                sender = "Sarah Sanders",
+                subject = "Analysis & design",
+                recipient = "Emma Evans",
+                content = "Ik heb je notities van de les ontvangen, bedankt!",
+                timestamp = "1:45 PM"
+            ),
+            Message(
+                sender = "Emma Evans",
+                subject = "Android Development",
+
+                recipient = "Sarah Sanders",
+                content = "Geen probleem, altijd blij om te helpen!",
+                timestamp = "1:47 PM"
+            )
+        )
+    }
+
+
     fun getUsers(): List<User> {
         return listOf(
             User(
@@ -73,12 +118,7 @@ object MockUp {
             Vak("Engels", 1)
         )
     }
-    fun getInbox(): List<Message> {
-        return listOf(
-            Message(getUsers()[0].voornaam + " " + getUsers()[0].achternaam, getVakken()[0].naam, "Heeft 5 afbeeldingen verstuurd."),
-            Message(getUsers()[1].voornaam + " " + getUsers()[1].achternaam, getVakken()[1].naam, "Kan je me helpen bij opdracht 10?")
-        )
-    }
+
 }
 
 data class User(

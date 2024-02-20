@@ -20,14 +20,16 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import be.thijsgeeraert.studdybuddy.data.MockUp.getMessages
 import be.thijsgeeraert.studdybuddy.data.MockUp.getUsers
 import be.thijsgeeraert.studdybuddy.ui.screens.BuddyDetailScreen
 import be.thijsgeeraert.studdybuddy.ui.screens.BuddyScreen
 import be.thijsgeeraert.studdybuddy.ui.screens.HomeScreen
+import be.thijsgeeraert.studdybuddy.ui.screens.InboxScreen
 import be.thijsgeeraert.studdybuddy.ui.screens.LoginScreen
 import be.thijsgeeraert.studdybuddy.ui.screens.MentorScreen
 import be.thijsgeeraert.studdybuddy.ui.screens.RegisterScreen
-import be.thijsgeeraert.studdybuddy.ui.screens.VakScreen
+import be.thijsgeeraert.studdybuddy.ui.screens.VakkenScreen
 import be.thijsgeeraert.studdybuddy.ui.theme.GoodRed
 
 @Composable
@@ -42,7 +44,8 @@ enum class StuddyBuddyScreen(val displayName: Int) {
     BuddyScreen(displayName = R.string.buddy_screen),
     BuddyDetailScreen(displayName = R.string.buddy_detail_screen),
     VakScreen(displayName = R.string.vak_screen),
-    BijlesScreen(displayName = R.string.bijles_screen)
+    BijlesScreen(displayName = R.string.bijles_screen),
+    InboxScreen(displayName = R.string.Chat)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -84,10 +87,15 @@ fun StuddyBuddyNavigation() {
                 BuddyDetailScreen()
             }
             composable(StuddyBuddyScreen.VakScreen.name) {
-                VakScreen()
+                VakkenScreen()
             }
             composable(StuddyBuddyScreen.BijlesScreen.name) {
-                MentorScreen(getUsers(), onclickDetail = { navController.navigate(StuddyBuddyScreen.BuddyDetailScreen.name)})
+                MentorScreen(getUsers(), onclickDetail = { navController.navigate(StuddyBuddyScreen.BuddyDetailScreen.name)}, onFilterClicked = { navController.navigate(StuddyBuddyScreen.VakScreen.name)} ,onChatClicked = {navController.navigate(StuddyBuddyScreen.InboxScreen.name)})
+            }
+            composable(StuddyBuddyScreen.InboxScreen.name) {
+
+
+                InboxScreen(getMessages())
             }
         }
     }
