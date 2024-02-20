@@ -29,7 +29,7 @@ import be.thijsgeeraert.studdybuddy.data.Vak
 fun MentorScreen(mentors: List<User>, onclickDetail: () -> Unit = {}, onFilterClicked: () -> Unit= {}, onChatClicked: () -> Unit  = {}) {
     // Replace with actual drawable and string resources
     val userIcon: Painter = painterResource(id = R.drawable.user)
-    val starIcon: Painter = painterResource(id = R.drawable.noun_star_5947137)
+    val starIcon: Painter = painterResource(id = R.drawable.sterreke_14)
 
 
 

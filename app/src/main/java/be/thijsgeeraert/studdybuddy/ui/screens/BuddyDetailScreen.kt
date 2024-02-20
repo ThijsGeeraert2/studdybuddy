@@ -30,7 +30,7 @@ fun PreviewBuddyDetailScreen() {
 fun BuddyDetailScreen() {
     // Replace with actual drawable and string resources
     val userIcon: Painter = painterResource(id = R.drawable.user)
-    val starIcon: Painter = painterResource(id = R.drawable.ster)
+    val starIcon: Painter = painterResource(id = R.drawable.sterreke_14)
 
     Column(
         modifier = Modifier

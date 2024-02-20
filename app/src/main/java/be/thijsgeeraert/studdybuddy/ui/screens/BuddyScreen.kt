@@ -31,7 +31,7 @@ data class Buddy(
 fun BuddyScreen(buddies: List<User>, onclickDetail: () -> Unit = {}, onFilterClicked: () -> Unit= {}, onChatClicked: () -> Unit  = {}) {
     // Replace with actual icons
     val userIcon: Painter = painterResource(id = R.drawable.user)
-    val starIcon: Painter = painterResource(id = R.drawable.ster)
+    val starIcon: Painter = painterResource(id = R.drawable.sterreke_14)
 
     Column(
         modifier = Modifier
