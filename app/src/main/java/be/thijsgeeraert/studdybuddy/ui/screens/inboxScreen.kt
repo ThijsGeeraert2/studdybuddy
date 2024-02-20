@@ -31,21 +31,6 @@ fun InboxScreen(messages: List<Message>) {
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Header block
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.Red)
-                .padding(16.dp)
-        ) {
-            Text(
-                text = stringResource(id = R.string.inbox),
-                fontSize = 24.sp,
-                color = Color.White,
-                modifier = Modifier.align(Alignment.Center)
-            )
-        }
-
         Spacer(modifier = Modifier.height(16.dp))
 
         // List of messages

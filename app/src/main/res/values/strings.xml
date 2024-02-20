@@ -6,6 +6,7 @@
     <string name="buddy_detail_screen">Buddy</string>
     <string name="vak_screen">Vak</string>
     <string name="bijles_screen">Bijles</string>
+    <string name="inbox_screen">Inbox</string>
     <string name="login">login</string>
     <string name="username">username</string>
     <string name="password">password</string>
