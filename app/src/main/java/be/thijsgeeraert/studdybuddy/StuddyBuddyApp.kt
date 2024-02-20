@@ -64,7 +64,7 @@ fun StuddyBuddyNavigation() {
         val padding = it
         NavHost(navController = navController, startDestination = StuddyBuddyScreen.LoginScreen.name) {
             composable(StuddyBuddyScreen.LoginScreen.name) {
-                LoginScreen(onConfirmClick = { navController.navigate(StuddyBuddyScreen.HomeScreen.displayName)})
+                LoginScreen(onConfirmClick = { navController.navigate(StuddyBuddyScreen.HomeScreen.name)})
             }
             composable(StuddyBuddyScreen.RegisterScreen.name) {
                 RegisterScreen()
