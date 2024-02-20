@@ -29,8 +29,8 @@ fun PreviewBuddyDetailScreen() {
 @Composable
 fun BuddyDetailScreen() {
     // Replace with actual drawable and string resources
-    val userIcon: Painter = painterResource(id = R.drawable.noun_mentor_1112698)
-    val starIcon: Painter = painterResource(id = R.drawable.noun_star_5947137)
+    val userIcon: Painter = painterResource(id = R.drawable.user)
+    val starIcon: Painter = painterResource(id = R.drawable.ster)
 
     Column(
         modifier = Modifier

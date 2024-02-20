@@ -21,11 +21,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import be.thijsgeeraert.studdybuddy.data.MockUp.getUsers
-import be.thijsgeeraert.studdybuddy.ui.screens.BijlesScreen
 import be.thijsgeeraert.studdybuddy.ui.screens.BuddyDetailScreen
 import be.thijsgeeraert.studdybuddy.ui.screens.BuddyScreen
 import be.thijsgeeraert.studdybuddy.ui.screens.HomeScreen
 import be.thijsgeeraert.studdybuddy.ui.screens.LoginScreen
+import be.thijsgeeraert.studdybuddy.ui.screens.MentorScreen
 import be.thijsgeeraert.studdybuddy.ui.screens.RegisterScreen
 import be.thijsgeeraert.studdybuddy.ui.screens.VakScreen
 import be.thijsgeeraert.studdybuddy.ui.theme.GoodRed
@@ -75,7 +75,7 @@ fun StuddyBuddyNavigation() {
                 RegisterScreen()
             }
             composable(StuddyBuddyScreen.HomeScreen.name) {
-                HomeScreen(onFindBuddyClick = {navController.navigate(StuddyBuddyScreen.BuddyScreen.name)})
+                HomeScreen(onFindBuddyClick = {navController.navigate(StuddyBuddyScreen.BuddyScreen.name)}, onFindMentorClick = {navController.navigate(StuddyBuddyScreen.BijlesScreen.name)})
             }
             composable(StuddyBuddyScreen.BuddyScreen.name) {
                 BuddyScreen(getUsers(), onclickDetail = { navController.navigate(StuddyBuddyScreen.BuddyDetailScreen.name)})
@@ -87,7 +87,7 @@ fun StuddyBuddyNavigation() {
                 VakScreen()
             }
             composable(StuddyBuddyScreen.BijlesScreen.name) {
-                BijlesScreen()
+                MentorScreen(getUsers(), onclickDetail = { navController.navigate(StuddyBuddyScreen.BuddyDetailScreen.name)})
             }
         }
     }
