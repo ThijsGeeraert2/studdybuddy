@@ -1,4 +1,5 @@
 package be.thijsgeeraert.studdybuddy.ui.screens
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -18,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import be.thijsgeeraert.studdybuddy.R
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun PreviewBuddyDetailScreen() {
     BuddyDetailScreen()
@@ -72,7 +73,8 @@ fun BuddyDetailScreen() {
         Button(
             onClick = { /* TODO: Implement click action */ },
             colors = ButtonDefaults.buttonColors(Color.Red),
-            shape = RoundedCornerShape(50)
+            shape = RoundedCornerShape(50),
+            modifier = Modifier.fillMaxWidth()
         ) {
             Text(
                 text = stringResource(id = R.string.subjects_buddy),
@@ -86,52 +88,53 @@ fun BuddyDetailScreen() {
         Button(
             onClick = { /* TODO: Implement click action */ },
             colors = ButtonDefaults.buttonColors(Color.Red),
-            shape = RoundedCornerShape(50)
+            shape = RoundedCornerShape(50),
+            modifier = Modifier.fillMaxWidth()
         ) {
             Text(
                 text = stringResource(id = R.string.subjects_mentor),
                 color = Color.White,
                 fontSize = 16.sp
             )
-            Spacer(modifier = Modifier.height(16.dp))
+        }
 
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .border(1.dp, Color.Red, RoundedCornerShape(8.dp)),
-                elevation = CardDefaults.cardElevation(0.dp)
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .border(1.dp, Color.Red, RoundedCornerShape(8.dp)),
+            elevation = CardDefaults.cardElevation(0.dp)
+        ) {
+            Column(
+                modifier = Modifier.padding(16.dp)
             ) {
-                Column(
-                    modifier = Modifier.padding(16.dp)
+                Text(
+                    text = stringResource(id = R.string.about_me),
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 18.sp,
+                    color = Color.Red
+                )
+                Text(
+                    text = "Als student zoek ik constant naar manieren om samen te leren en te groeien.",
+                    fontSize = 16.sp
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Button(
+                    onClick = { /* TODO: Implement click action */ },
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(Color.Red),
+                    shape = RoundedCornerShape(50)
                 ) {
                     Text(
-                        text = stringResource(id = R.string.about_me),
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 18.sp,
-                        color = Color.Red
+                        text = stringResource(id = R.string.contact),
+                        color = Color.White,
+                        fontSize = 18.sp
                     )
-                    Text(
-                        text = "Als student zoek ik constant naar manieren om samen te leren en te groeien.",
-                        fontSize = 16.sp
-                    )
-
-                    Spacer(modifier = Modifier.height(16.dp))
-
-                    Button(
-                        onClick = { /* TODO: Implement click action */ },
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.buttonColors(Color.Red),
-                        shape = RoundedCornerShape(50)
-                    ) {
-                        Text(
-                            text = stringResource(id = R.string.contact),
-                            color = Color.White,
-                            fontSize = 18.sp
-                        )
-                    }
                 }
             }
         }
     }
 }
-
