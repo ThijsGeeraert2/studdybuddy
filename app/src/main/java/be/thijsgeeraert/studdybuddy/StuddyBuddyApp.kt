@@ -73,6 +73,7 @@ fun StuddyBuddyNavigation() {
             StuddyBuddyTopAppBar(
                 currentScreen = currentScreen,
                 canNavigateBack = navController.previousBackStackEntry != null,
+                navigateUp = { navController.popBackStack() },
                 scrollBehavior = scrollBehavior
             )
         },
@@ -119,7 +120,7 @@ fun StuddyBuddyNavigation() {
 fun StuddyBuddyTopAppBar(
     currentScreen: StuddyBuddyScreen,
     canNavigateBack: Boolean,
-    navigateUp: () -> Unit = {},
+    navigateUp: () -> Unit,
     scrollBehavior: TopAppBarScrollBehavior,
     modifier: Modifier = Modifier
 ) {
