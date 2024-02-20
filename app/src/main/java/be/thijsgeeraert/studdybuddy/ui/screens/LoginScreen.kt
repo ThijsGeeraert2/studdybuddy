@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -86,7 +87,8 @@ fun LoginScreen(
                 modifier = Modifier.weight(1f),
                 colors = ButtonDefaults.buttonColors(GoodRed) // Set the confirm button to red
             ) {
-                Text(text = stringResource(id = R.string.go_on)) // Change the string to "Ga verder"
+                Text(text = stringResource(id = R.string.go_on),
+                    fontSize = 18.sp) // Change the string to "Ga verder"
             }
 
             Button(
@@ -94,11 +96,14 @@ fun LoginScreen(
                 modifier = Modifier.weight(1f),
                 colors = ButtonDefaults.buttonColors(GoodGrey) // Set the cancel button to gray
             ) {
-                Text(text = stringResource(id = R.string.cancel)) // Keep the string as "annuleren"
+                Text(text = stringResource(id = R.string.cancel),
+                    fontSize = 18.sp) // Keep the string as "annuleren"
             }
         }
 
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(24.dp))
+        Divider(color = Color.Black, thickness = 2.dp)
+        Spacer(modifier = Modifier.height(36.dp))
 
         // This would be the additional button shown in your screenshot, presumably for another action
         Button(
@@ -109,7 +114,7 @@ fun LoginScreen(
             colors = ButtonDefaults.buttonColors(GoodGreen) // Set the button to red
         ) {
             // The text of this button is not visible in the screenshot. Replace 'R.string.additional_action' with the correct string resource id.
-            Text(text = stringResource(id = R.string.additional_action), color = Color.Black)
+            Text(text = stringResource(id = R.string.additional_action), color = Color.Black, fontSize = 20.sp)
         }
     }
 }
