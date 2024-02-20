@@ -73,7 +73,7 @@ fun StuddyBuddyNavigation() {
                 HomeScreen()
             }
             composable(StuddyBuddyScreen.BuddyScreen.name) {
-                BuddyScreen()
+                //BuddyScreen()
             }
             composable(StuddyBuddyScreen.BuddyDetailScreen.name) {
                 BuddyDetailScreen()
