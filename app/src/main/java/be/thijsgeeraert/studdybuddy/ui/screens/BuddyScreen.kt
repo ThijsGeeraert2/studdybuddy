@@ -16,6 +16,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import be.thijsgeeraert.studdybuddy.R
+import be.thijsgeeraert.studdybuddy.data.User
+import be.thijsgeeraert.studdybuddy.data.Vak
 
 data class Buddy(
     val name: String,
@@ -25,7 +27,7 @@ data class Buddy(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BuddyScreen(buddies: List<Buddy>) {
+fun BuddyScreen(buddies: List<User>) {
     // Replace with actual icons
     val userIcon: Painter = painterResource(id = R.drawable.noun_mentor_1112698)
     val starIcon: Painter = painterResource(id = R.drawable.noun_star_5947137)
@@ -58,9 +60,9 @@ fun BuddyScreen(buddies: List<Buddy>) {
         for (buddy in buddies) {
             BuddyItem(
                 userIcon = userIcon,
-                name = buddy.name,
+                name = buddy.voornaam,
                 rating = buddy.rating,
-                field = buddy.field,
+                field = buddy.vakken,
                 starIcon = starIcon
             )
         }
@@ -72,7 +74,7 @@ fun BuddyItem(
     userIcon: Painter,
     name: String,
     rating: Int,
-    field: String,
+    field: List<Vak>,
     starIcon: Painter
 ) {
     Card(
@@ -103,9 +105,13 @@ fun BuddyItem(
                         modifier = Modifier.size(24.dp)
                     )
                     Text(text = " $rating", fontSize = 16.sp)
+
                 }
                 Text(text = field, fontSize = 16.sp)
+
             }
         }
     }
 }
+
+
