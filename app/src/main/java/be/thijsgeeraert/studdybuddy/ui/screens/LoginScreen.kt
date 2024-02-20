@@ -123,6 +123,6 @@ fun LoginScreen(
 @Composable
 fun PhotosGridScreenPreview() {
     StuddybuddyTheme {
-        LoginPage()
+        LoginScreen()
     }
 }
