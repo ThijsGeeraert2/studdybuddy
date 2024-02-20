@@ -1,12 +1,19 @@
 package be.thijsgeeraert.studdybuddy
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.MailOutline
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
@@ -61,33 +68,38 @@ fun StuddyBuddyNavigation() {
 
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
-    Scaffold {
-        MarsTopAppBar(
-            currentScreen = currentScreen,
-            canNavigateBack = navController.previousBackStackEntry != null,
-            scrollBehavior = scrollBehavior
-        )
-
-
+    Scaffold(
+        topBar = {
+            MarsTopAppBar(
+                currentScreen = currentScreen,
+                canNavigateBack = navController.previousBackStackEntry != null,
+                navigateUp = { navController.popBackStack() },
+                scrollBehavior = scrollBehavior
+            )
+        },
+        bottomBar = {
+            StuddyBuddyBottomBar(currentScreen = currentScreen, onItemClick = { navController.navigate(it)})
+        }
+    ) {
         val padding = it
         NavHost(navController = navController, startDestination = StuddyBuddyScreen.LoginScreen.name) {
             composable(StuddyBuddyScreen.LoginScreen.name) {
-                LoginScreen(onConfirmClick = { navController.navigate(StuddyBuddyScreen.HomeScreen.name)}, onRegisterClick = { navController.navigate(StuddyBuddyScreen.RegisterScreen.name)})
+                LoginScreen(onConfirmClick = { navController.navigate(StuddyBuddyScreen.HomeScreen.name)})
             }
             composable(StuddyBuddyScreen.RegisterScreen.name) {
-                RegisterScreen(onRegisterClick = { navController.navigate(StuddyBuddyScreen.HomeScreen.name)})
+                RegisterScreen()
             }
             composable(StuddyBuddyScreen.HomeScreen.name) {
                 HomeScreen(onFindBuddyClick = {navController.navigate(StuddyBuddyScreen.BuddyScreen.name)}, onFindMentorClick = {navController.navigate(StuddyBuddyScreen.BijlesScreen.name)})
             }
             composable(StuddyBuddyScreen.BuddyScreen.name) {
-                BuddyScreen(getUsers(), onclickDetail = { navController.navigate(StuddyBuddyScreen.BuddyDetailScreen.name)}, onFilterClicked = { navController.navigate(StuddyBuddyScreen.VakScreen.name)} ,onChatClicked = {navController.navigate(StuddyBuddyScreen.InboxScreen.name)})
+                BuddyScreen(getUsers(), onclickDetail = { navController.navigate(StuddyBuddyScreen.BuddyDetailScreen.name)})
             }
             composable(StuddyBuddyScreen.BuddyDetailScreen.name) {
                 BuddyDetailScreen()
             }
             composable(StuddyBuddyScreen.VakScreen.name) {
-                VakkenScreen(onGoNext = { navController.navigate(StuddyBuddyScreen.BuddyScreen.name)})
+                VakkenScreen()
             }
             composable(StuddyBuddyScreen.BijlesScreen.name) {
                 MentorScreen(getUsers(), onclickDetail = { navController.navigate(StuddyBuddyScreen.BuddyDetailScreen.name)}, onFilterClicked = { navController.navigate(StuddyBuddyScreen.VakScreen.name)} ,onChatClicked = {navController.navigate(StuddyBuddyScreen.InboxScreen.name)})
@@ -130,4 +142,60 @@ fun MarsTopAppBar(
             }
         }
     )
+}
+
+@Composable
+fun StuddyBuddyBottomBar(
+    currentScreen: StuddyBuddyScreen,
+    onItemClick: (route: String) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    AnimatedVisibility(visible = currentScreen != StuddyBuddyScreen.LoginScreen) {
+        NavigationBar {
+            val homeTitle = stringResource(id = R.string.home_screen)
+            NavigationBarItem(
+                selected = homeTitle == stringResource(id = currentScreen.displayName),
+                onClick = {
+                    if (currentScreen != StuddyBuddyScreen.HomeScreen) {
+                        onItemClick(StuddyBuddyScreen.HomeScreen.name)
+                    }
+                          },
+                icon = {
+                    if (homeTitle == stringResource(id = currentScreen.displayName)) {
+                        Icon(
+                            imageVector = Icons.Filled.Home,
+                            contentDescription = homeTitle
+                        )
+                    } else {
+                        Icon(
+                            imageVector = Icons.Outlined.Home,
+                            contentDescription = homeTitle
+                        )
+                    }
+                }
+            )
+            val inboxTitle = stringResource(id = R.string.inbox_screen)
+            NavigationBarItem(
+                selected = inboxTitle == stringResource(id = currentScreen.displayName),
+                onClick = {
+                    if (currentScreen != StuddyBuddyScreen.InboxScreen) {
+                        onItemClick(StuddyBuddyScreen.InboxScreen.name)
+                    }
+                          },
+                icon = {
+                    if (inboxTitle == stringResource(id = currentScreen.displayName)) {
+                        Icon(
+                            imageVector = Icons.Filled.Email,
+                            contentDescription = inboxTitle
+                        )
+                    } else {
+                        Icon(
+                            imageVector = Icons.Outlined.MailOutline,
+                            contentDescription = inboxTitle
+                        )
+                    }
+                }
+            )
+        }
+    }
 }
