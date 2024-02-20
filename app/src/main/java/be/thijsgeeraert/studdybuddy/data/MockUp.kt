@@ -76,7 +76,7 @@ object MockUp {
             User(
                 "Sarah",
                 "Sanders",
-                listOf(Vak("Geschiedenis", 1)),
+                emptyList(),
                 listOf(Vak("Natuurkunde", 3), Vak("Biologie", 3)),
                 emptyList(),
                 4
@@ -84,7 +84,7 @@ object MockUp {
             User(
                 "Emma",
                 "Evans",
-                listOf(Vak("Engels", 1)),
+                emptyList(),
                 listOf(Vak("Wiskunde", 1), Vak("Nederlands", 2)),
                 listOf(
                     User(

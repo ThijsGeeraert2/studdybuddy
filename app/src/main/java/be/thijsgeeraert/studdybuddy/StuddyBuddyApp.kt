@@ -102,7 +102,7 @@ fun StuddyBuddyNavigation() {
                 VakkenScreen(onGoNext = { navController.navigate(StuddyBuddyScreen.BuddyScreen.name)})
             }
             composable(StuddyBuddyScreen.BijlesScreen.name) {
-                MentorScreen(getUsers(), onclickDetail = { navController.navigate(StuddyBuddyScreen.BuddyDetailScreen.name)}, onFilterClicked = { navController.navigate(StuddyBuddyScreen.VakScreen.name)} ,onChatClicked = {navController.navigate(StuddyBuddyScreen.InboxScreen.name)})
+                MentorScreen(getUsers().filter { u -> u.isMentorVoor.isNotEmpty() }, onclickDetail = { navController.navigate(StuddyBuddyScreen.BuddyDetailScreen.name)}, onFilterClicked = { navController.navigate(StuddyBuddyScreen.VakScreen.name)} ,onChatClicked = {navController.navigate(StuddyBuddyScreen.InboxScreen.name)})
             }
             composable(StuddyBuddyScreen.InboxScreen.name) {
                 InboxScreen(getMessages())
