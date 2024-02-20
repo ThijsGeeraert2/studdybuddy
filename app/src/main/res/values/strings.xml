@@ -16,4 +16,8 @@
     <string name="direction">Richting</string>
     <string name="subjects">vakken</string>
     <string name="school">School</string>
+    <string name="home">Home</string>
+    <string name="find_buddy">Vind vriendje</string>
+    <string name="find_mentor">vind mentor</string>
+    <string name="become_mentor">word mentor</string>
 </resources>
