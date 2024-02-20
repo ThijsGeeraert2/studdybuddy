@@ -29,13 +29,15 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import be.thijsgeeraert.studdybuddy.ui.theme.StuddybuddyTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(
-    onConfirmClick: (String, String) -> Unit = { _, _ -> },
+    onConfirmClick: () -> Unit,
     onCancelClick: () -> Unit = {},
     onRegisterClick: () -> Unit = {}
 ) {
@@ -85,7 +87,7 @@ fun LoginScreen(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Button(
-                onClick = { onConfirmClick(username, password) },
+                onClick = { onConfirmClick() },
                 modifier = Modifier.weight(1f),
                 colors = ButtonDefaults.buttonColors(Color.Red) // Set the confirm button to red
             ) {
@@ -114,5 +116,13 @@ fun LoginScreen(
             // The text of this button is not visible in the screenshot. Replace 'R.string.additional_action' with the correct string resource id.
             Text(text = stringResource(id = R.string.additional_action), color = Color.White)
         }
+    }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun PhotosGridScreenPreview() {
+    StuddybuddyTheme {
+        //LoginScreen()
     }
 }
