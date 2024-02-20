@@ -28,6 +28,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import be.thijsgeeraert.studdybuddy.data.MockUp
 import be.thijsgeeraert.studdybuddy.data.MockUp.getUsers
 import be.thijsgeeraert.studdybuddy.ui.screens.BuddyDetailScreen
 import be.thijsgeeraert.studdybuddy.ui.screens.BuddyScreen
@@ -108,7 +109,7 @@ fun StuddyBuddyNavigation() {
                 MentorScreen(getUsers(), onclickDetail = { navController.navigate(StuddyBuddyScreen.BuddyDetailScreen.name)})
             }
             composable(StuddyBuddyScreen.InboxScreen.name) {
-                InboxScreen(messages = emptyList())
+                InboxScreen(messages = MockUp.getInbox())
             }
         }
     }

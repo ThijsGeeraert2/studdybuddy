@@ -73,6 +73,12 @@ object MockUp {
             Vak("Engels", 1)
         )
     }
+    fun getInbox(): List<Message> {
+        return listOf(
+            Message(getUsers()[0].voornaam + " " + getUsers()[0].achternaam, getVakken()[0].naam, "Heeft 5 afbeeldingen verstuurd."),
+            Message(getUsers()[1].voornaam + " " + getUsers()[1].achternaam, getVakken()[1].naam, "Kan je me helpen bij opdracht 10?")
+        )
+    }
 }
 
 data class User(
@@ -87,4 +93,10 @@ data class User(
 data class Vak (
     val naam: String,
     val jaar: Int
+)
+
+data class Message(
+    val sender: String,
+    val subject: String,
+    val content: String
 )

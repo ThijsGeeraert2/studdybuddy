@@ -14,12 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import be.thijsgeeraert.studdybuddy.R
-
-data class Message(
-    val sender: String,
-    val subject: String,
-    val content: String
-)
+import be.thijsgeeraert.studdybuddy.data.Message
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -31,7 +26,7 @@ fun InboxScreen(messages: List<Message>) {
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(60.dp))
 
         // List of messages
         messages.forEach { message ->
