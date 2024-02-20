@@ -10,14 +10,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import be.thijsgeeraert.studdybuddy.R
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
     onFindBuddyClick: () -> Unit = {},
@@ -25,9 +23,7 @@ fun HomeScreen(
     onBecomeMentorClick: () -> Unit = {}
 ) {
     // Replace these with the actual drawable resource IDs for your icons
-    val buddyIcon: Painter = painterResource(id = R.drawable.ic_buddy)
-    val mentorIcon: Painter = painterResource(id = R.drawable.ic_mentor)
-    val becomeMentorIcon: Painter = painterResource(id = R.drawable.ic_become_mentor)
+
 
     Column(
         modifier = Modifier
@@ -55,7 +51,7 @@ fun HomeScreen(
 
         // Button for "Zoek een Buddy"
         OptionButton(
-            icon = buddyIcon,
+
             text = stringResource(id = R.string.find_buddy),
             onClick = onFindBuddyClick
         )
@@ -64,7 +60,6 @@ fun HomeScreen(
 
         // Button for "Zoek een mentor"
         OptionButton(
-            icon = mentorIcon,
             text = stringResource(id = R.string.find_mentor),
             onClick = onFindMentorClick
         )
@@ -73,7 +68,7 @@ fun HomeScreen(
 
         // Button for "Wordt een mentor"
         OptionButton(
-            icon = becomeMentorIcon,
+
             text = stringResource(id = R.string.become_mentor),
             onClick = onBecomeMentorClick
         )
@@ -82,7 +77,6 @@ fun HomeScreen(
 
 @Composable
 fun OptionButton(
-    icon: Painter,
     text: String,
     onClick: () -> Unit
 ) {
@@ -100,12 +94,7 @@ fun OptionButton(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start
         ) {
-            Image(
-                painter = icon,
-                contentDescription = null, // Provide proper content description for accessibility
-                modifier = Modifier.size(48.dp)
-            )
-            Spacer(modifier = Modifier.width(16.dp))
+            //Spacer(modifier = Modifier.width(16.dp))
             Text(
                 text = text,
                 style = MaterialTheme.typography.headlineSmall
@@ -114,3 +103,8 @@ fun OptionButton(
     }
 }
 
+@Preview(showBackground = true)
+@Composable
+private fun HomeScreen() {
+    HomeScreen()
+}
