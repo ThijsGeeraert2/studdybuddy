@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import be.thijsgeeraert.studdybuddy.R
+import be.thijsgeeraert.studdybuddy.ui.theme.GoodRed
 
 @Preview(showBackground = true)
 @Composable
@@ -73,7 +74,7 @@ fun BuddyDetailScreen() {
 
         Button(
             onClick = { /* TODO: Implement click action */ },
-            colors = ButtonDefaults.buttonColors(Color.Red),
+            colors = ButtonDefaults.buttonColors(GoodRed),
             shape = RoundedCornerShape(50),
             modifier = Modifier.fillMaxWidth()
         ) {
@@ -88,7 +89,7 @@ fun BuddyDetailScreen() {
 
         Button(
             onClick = { /* TODO: Implement click action */ },
-            colors = ButtonDefaults.buttonColors(Color.Red),
+            colors = ButtonDefaults.buttonColors(GoodRed),
             shape = RoundedCornerShape(50),
             modifier = Modifier.fillMaxWidth()
         ) {
@@ -104,7 +105,7 @@ fun BuddyDetailScreen() {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .border(1.dp, Color.Red, RoundedCornerShape(8.dp)),
+                .border(1.dp, GoodRed, RoundedCornerShape(8.dp)),
             elevation = CardDefaults.cardElevation(0.dp)
         ) {
             Column(
@@ -126,7 +127,7 @@ fun BuddyDetailScreen() {
                 Button(
                     onClick = { /* TODO: Implement click action */ },
                     modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(Color.Red),
+                    colors = ButtonDefaults.buttonColors(GoodRed),
                     shape = RoundedCornerShape(50)
                 ) {
                     Text(
