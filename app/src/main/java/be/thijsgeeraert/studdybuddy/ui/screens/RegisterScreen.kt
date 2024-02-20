@@ -19,7 +19,7 @@ import be.thijsgeeraert.studdybuddy.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RegisterPage(
+fun RegisterScreen(
     onRegisterClick: (String, String, String, String, String) -> Unit = { _, _, _, _, _ -> }
 ) {
     var name by remember { mutableStateOf("") }

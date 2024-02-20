@@ -36,7 +36,7 @@ import be.thijsgeeraert.studdybuddy.ui.theme.StuddybuddyTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginPage(
+fun LoginScreen(
     onConfirmClick: (String, String) -> Unit = { _, _ -> },
     onCancelClick: () -> Unit = {},
     onRegisterClick: () -> Unit = {}
