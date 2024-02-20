@@ -107,7 +107,7 @@ fun BuddyItem(
                     Text(text = " $rating", fontSize = 16.sp)
 
                 }
-                Text(text = field, fontSize = 16.sp)
+                Text(text = field.map { n -> n.naam }.joinToString(", "), fontSize = 16.sp)
 
             }
         }
