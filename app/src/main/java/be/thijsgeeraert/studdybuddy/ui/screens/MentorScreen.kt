@@ -140,14 +140,7 @@ fun CourseHeader(
             modifier = Modifier.weight(1f).padding(horizontal = 8.dp)
         )
 
-        // Chat button
-        IconButton(onClick = onChatClicked) {
-            Icon(
-                painter = chatIcon,
-                contentDescription = stringResource(id = R.string.cd_chat_icon),
-                modifier = Modifier.size(24.dp) // You can adjust the size if needed
-            )
-        }
+
     }
 }
 @Preview(showBackground = true)
