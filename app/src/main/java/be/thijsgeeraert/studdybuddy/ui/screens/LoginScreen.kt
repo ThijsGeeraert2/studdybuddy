@@ -107,7 +107,7 @@ fun LoginScreen(
 
         // This would be the additional button shown in your screenshot, presumably for another action
         Button(
-            onClick = { /* Handle click action */ },
+            onClick = onRegisterClick,
             modifier = Modifier
                 .width(300.dp)
                 .height(48.dp), // Match the height of the button in the screenshot

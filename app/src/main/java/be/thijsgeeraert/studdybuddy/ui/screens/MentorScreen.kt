@@ -26,10 +26,12 @@ import be.thijsgeeraert.studdybuddy.data.Vak
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MentorScreen(mentors: List<User>, onclickDetail: () -> Unit = {}) {
+fun MentorScreen(mentors: List<User>, onclickDetail: () -> Unit = {}, onFilterClicked: () -> Unit= {}, onChatClicked: () -> Unit  = {}) {
     // Replace with actual drawable and string resources
     val userIcon: Painter = painterResource(id = R.drawable.user)
     val starIcon: Painter = painterResource(id = R.drawable.noun_star_5947137)
+
+
 
     Column(
         modifier = Modifier
@@ -40,7 +42,9 @@ fun MentorScreen(mentors: List<User>, onclickDetail: () -> Unit = {}) {
         // Header block
 
 
-        Spacer(modifier = Modifier.height(50.dp))
+        Spacer(modifier = Modifier.height(60.dp))
+
+        CourseHeader(onFilterClicked, onChatClicked)
 
         // List of mentors
         mentors.forEach { mentor ->
@@ -100,6 +104,49 @@ fun MentorItem(
                 }
                 Text(text = field, fontSize = 16.sp)
             }
+        }
+    }
+}
+
+@Composable
+fun CourseHeader(
+    onFilterClicked: () -> Unit = {},
+    onChatClicked: () -> Unit = {}
+) {
+    // Replace with actual drawable resources
+    val filterIcon: Painter = painterResource(id = R.drawable.filter) // Your filter icon
+    val chatIcon: Painter = painterResource(id = R.drawable.chat) // Your chat icon
+    val courseName = "Business Management 1" // Replace with a dynamic value if necessary
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        // Filter button
+        IconButton(onClick = onFilterClicked) {
+            Icon(
+                painter = filterIcon,
+                contentDescription = stringResource(id = R.string.cd_filter_icon),
+                modifier = Modifier.size(24.dp) // You can adjust the size if needed
+            )
+        }
+
+        Text(
+            text = courseName,
+            fontSize = 18.sp,
+            modifier = Modifier.weight(1f).padding(horizontal = 8.dp)
+        )
+
+        // Chat button
+        IconButton(onClick = onChatClicked) {
+            Icon(
+                painter = chatIcon,
+                contentDescription = stringResource(id = R.string.cd_chat_icon),
+                modifier = Modifier.size(24.dp) // You can adjust the size if needed
+            )
         }
     }
 }

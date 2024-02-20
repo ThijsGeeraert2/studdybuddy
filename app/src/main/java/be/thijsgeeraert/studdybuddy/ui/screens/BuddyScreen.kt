@@ -44,6 +44,7 @@ fun BuddyScreen(buddies: List<User>, onclickDetail: () -> Unit = {}) {
 
         Spacer(modifier = Modifier.height(60.dp))
 
+        CourseHeader()
         // List of buddies
         for (buddy in buddies) {
             BuddyItem(

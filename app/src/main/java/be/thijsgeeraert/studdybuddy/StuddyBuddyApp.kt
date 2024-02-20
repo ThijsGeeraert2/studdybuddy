@@ -24,8 +24,10 @@ import be.thijsgeeraert.studdybuddy.data.MockUp.getUsers
 import be.thijsgeeraert.studdybuddy.ui.screens.BuddyDetailScreen
 import be.thijsgeeraert.studdybuddy.ui.screens.BuddyScreen
 import be.thijsgeeraert.studdybuddy.ui.screens.HomeScreen
+import be.thijsgeeraert.studdybuddy.ui.screens.InboxScreen
 import be.thijsgeeraert.studdybuddy.ui.screens.LoginScreen
 import be.thijsgeeraert.studdybuddy.ui.screens.MentorScreen
+import be.thijsgeeraert.studdybuddy.ui.screens.Message
 import be.thijsgeeraert.studdybuddy.ui.screens.RegisterScreen
 import be.thijsgeeraert.studdybuddy.ui.screens.VakScreen
 import be.thijsgeeraert.studdybuddy.ui.theme.GoodRed
@@ -42,7 +44,8 @@ enum class StuddyBuddyScreen(val displayName: Int) {
     BuddyScreen(displayName = R.string.buddy_screen),
     BuddyDetailScreen(displayName = R.string.buddy_detail_screen),
     VakScreen(displayName = R.string.vak_screen),
-    BijlesScreen(displayName = R.string.bijles_screen)
+    BijlesScreen(displayName = R.string.bijles_screen),
+    ChatScreen(displayName = R.string.Chat)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -69,10 +72,10 @@ fun StuddyBuddyNavigation() {
         val padding = it
         NavHost(navController = navController, startDestination = StuddyBuddyScreen.LoginScreen.name) {
             composable(StuddyBuddyScreen.LoginScreen.name) {
-                LoginScreen(onConfirmClick = { navController.navigate(StuddyBuddyScreen.HomeScreen.name)})
+                LoginScreen(onConfirmClick = { navController.navigate(StuddyBuddyScreen.HomeScreen.name)}, onRegisterClick = { navController.navigate(StuddyBuddyScreen.RegisterScreen.name)})
             }
             composable(StuddyBuddyScreen.RegisterScreen.name) {
-                RegisterScreen()
+                RegisterScreen(onRegisterClick = { navController.navigate(StuddyBuddyScreen.HomeScreen.name)})
             }
             composable(StuddyBuddyScreen.HomeScreen.name) {
                 HomeScreen(onFindBuddyClick = {navController.navigate(StuddyBuddyScreen.BuddyScreen.name)}, onFindMentorClick = {navController.navigate(StuddyBuddyScreen.BijlesScreen.name)})
@@ -87,7 +90,16 @@ fun StuddyBuddyNavigation() {
                 VakScreen()
             }
             composable(StuddyBuddyScreen.BijlesScreen.name) {
-                MentorScreen(getUsers(), onclickDetail = { navController.navigate(StuddyBuddyScreen.BuddyDetailScreen.name)})
+                MentorScreen(getUsers(), onclickDetail = { navController.navigate(StuddyBuddyScreen.BuddyDetailScreen.name)}, onChatClicked = { navController.navigate(StuddyBuddyScreen.ChatScreen.name)})
+            }
+            composable(StuddyBuddyScreen.ChatScreen.name){
+                val messages = listOf(
+                    Message("Eduard Vandamme", "Problem Solving", "Heeft 5 afbeeldingen verstuurd"),
+                    Message("Dieter Vancollie", "Full Stack Dev", "Kan je me helpen bij opdracht 10?"),
+                    // ... Add other messages here
+                )
+
+                InboxScreen(messages)
             }
         }
     }

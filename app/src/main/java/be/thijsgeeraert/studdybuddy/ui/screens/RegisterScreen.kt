@@ -20,7 +20,7 @@ import be.thijsgeeraert.studdybuddy.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegisterScreen(
-    onRegisterClick: (String, String, String, String, String) -> Unit = { _, _, _, _, _ -> }
+    onRegisterClick: () -> Unit = {}
 ) {
     var name by remember { mutableStateOf("") }
     var familyName by remember { mutableStateOf("") }
@@ -39,21 +39,9 @@ fun RegisterScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         // Header block
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.Red)
-                .padding(16.dp)
-        ) {
-            Text(
-                text = stringResource(id = R.string.register),
-                fontSize = 24.sp,
-                color = Color.White,
-                modifier = Modifier.align(Alignment.Center)
-            )
-        }
 
-        Spacer(modifier = Modifier.height(32.dp))
+
+        Spacer(modifier = Modifier.height(60.dp))
 
         // Name input field
         OutlinedTextField(
@@ -107,7 +95,7 @@ fun RegisterScreen(
 
         // Registration button
         Button(
-            onClick = { onRegisterClick(name, familyName, school, subjects, direction) },
+            onClick = { onRegisterClick() },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(48.dp),

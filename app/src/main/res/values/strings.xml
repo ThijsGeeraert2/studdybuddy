@@ -37,4 +37,9 @@
     <string name="subjects_mentor">subjects mentor</string>
     <string name="subjects_buddy">subjects buddy</string>
     <string name="mentors">mentors</string>
+    <string name="cd_filter_icon">cd filter icon</string>
+    <string name="cd_chat_icon">cd chat icon</string>
+    <string name="star_icon_description_empty">star icon description empty</string>
+    <string name="reviews">reviews</string>
+    <string name="Chat">Chat</string>
 </resources>
