@@ -38,6 +38,7 @@ fun BuddyDetailScreen() {
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Spacer(modifier = Modifier.height(60.dp))
         Text(
             text = "Eduard Vandamme",
             fontWeight = FontWeight.Bold,

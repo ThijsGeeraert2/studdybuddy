@@ -41,21 +41,8 @@ fun BuddyScreen(buddies: List<User>, onclickDetail: () -> Unit = {}) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         // Header block
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.Red)
-                .padding(16.dp)
-        ) {
-            Text(
-                text = stringResource(id = R.string.buddys),
-                fontSize = 24.sp,
-                color = Color.White,
-                modifier = Modifier.align(Alignment.Center)
-            )
-        }
 
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(60.dp))
 
         // List of buddies
         for (buddy in buddies) {

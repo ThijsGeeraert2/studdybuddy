@@ -14,6 +14,7 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -27,6 +28,7 @@ import be.thijsgeeraert.studdybuddy.ui.screens.HomeScreen
 import be.thijsgeeraert.studdybuddy.ui.screens.LoginScreen
 import be.thijsgeeraert.studdybuddy.ui.screens.RegisterScreen
 import be.thijsgeeraert.studdybuddy.ui.screens.VakScreen
+import be.thijsgeeraert.studdybuddy.ui.theme.GoodRed
 
 @Composable
 fun StuddyBuddyApp() {
@@ -57,9 +59,11 @@ fun StuddyBuddyNavigation() {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
     Scaffold {
-        MarsTopAppBar(currentScreen = currentScreen,
+        MarsTopAppBar(
+            currentScreen = currentScreen,
             canNavigateBack = navController.previousBackStackEntry != null,
-            scrollBehavior = scrollBehavior)
+            scrollBehavior = scrollBehavior
+        )
 
 
         val padding = it
@@ -101,6 +105,7 @@ fun MarsTopAppBar(
 ) {
     CenterAlignedTopAppBar(
         scrollBehavior = scrollBehavior,
+        colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = GoodRed, titleContentColor = Color.White, actionIconContentColor = Color.White, navigationIconContentColor = Color.White),
         title = {
             Text(
                 text = stringResource(currentScreen.displayName),
