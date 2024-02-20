@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -32,6 +33,9 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import be.thijsgeeraert.studdybuddy.ui.theme.GoodGreen
+import be.thijsgeeraert.studdybuddy.ui.theme.GoodGrey
+import be.thijsgeeraert.studdybuddy.ui.theme.GoodRed
 import be.thijsgeeraert.studdybuddy.ui.theme.StuddybuddyTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -51,15 +55,6 @@ fun LoginScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-            text = stringResource(id = R.string.welcome), // Change the string to "welcome"
-            fontSize = 24.sp,
-            color = Color.White, // Change text color to white
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.Red) // Add a red background
-                .padding(16.dp) // Add padding around the text
-        )
 
         Spacer(modifier = Modifier.height(32.dp))
 
@@ -83,13 +78,13 @@ fun LoginScreen(
         Spacer(modifier = Modifier.height(24.dp))
 
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+            modifier = Modifier.width(300.dp),
+            horizontalArrangement = Arrangement.spacedBy(25.dp)
         ) {
             Button(
                 onClick = { onConfirmClick() },
                 modifier = Modifier.weight(1f),
-                colors = ButtonDefaults.buttonColors(Color.Red) // Set the confirm button to red
+                colors = ButtonDefaults.buttonColors(GoodRed) // Set the confirm button to red
             ) {
                 Text(text = stringResource(id = R.string.go_on)) // Change the string to "Ga verder"
             }
@@ -97,7 +92,7 @@ fun LoginScreen(
             Button(
                 onClick = onCancelClick,
                 modifier = Modifier.weight(1f),
-                colors = ButtonDefaults.buttonColors(Color.Gray) // Set the cancel button to gray
+                colors = ButtonDefaults.buttonColors(GoodGrey) // Set the cancel button to gray
             ) {
                 Text(text = stringResource(id = R.string.cancel)) // Keep the string as "annuleren"
             }
@@ -109,12 +104,12 @@ fun LoginScreen(
         Button(
             onClick = { /* Handle click action */ },
             modifier = Modifier
-                .fillMaxWidth()
+                .width(300.dp)
                 .height(48.dp), // Match the height of the button in the screenshot
-            colors = ButtonDefaults.buttonColors(Color.Red) // Set the button to red
+            colors = ButtonDefaults.buttonColors(GoodGreen) // Set the button to red
         ) {
             // The text of this button is not visible in the screenshot. Replace 'R.string.additional_action' with the correct string resource id.
-            Text(text = stringResource(id = R.string.additional_action), color = Color.White)
+            Text(text = stringResource(id = R.string.additional_action), color = Color.Black)
         }
     }
 }
@@ -123,6 +118,6 @@ fun LoginScreen(
 @Composable
 fun PhotosGridScreenPreview() {
     StuddybuddyTheme {
-        //LoginScreen()
+        LoginScreen(onConfirmClick = {})
     }
 }
