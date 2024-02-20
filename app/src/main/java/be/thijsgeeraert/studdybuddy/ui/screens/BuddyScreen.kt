@@ -28,10 +28,10 @@ data class Buddy(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BuddyScreen(buddies: List<User>, onclickDetail: () -> Unit = {}) {
+fun BuddyScreen(buddies: List<User>, onclickDetail: () -> Unit = {}, onFilterClicked: () -> Unit= {}, onChatClicked: () -> Unit  = {}) {
     // Replace with actual icons
-    val userIcon: Painter = painterResource(id = R.drawable.noun_mentor_1112698)
-    val starIcon: Painter = painterResource(id = R.drawable.noun_star_5947137)
+    val userIcon: Painter = painterResource(id = R.drawable.user)
+    val starIcon: Painter = painterResource(id = R.drawable.ster)
 
     Column(
         modifier = Modifier
@@ -44,7 +44,7 @@ fun BuddyScreen(buddies: List<User>, onclickDetail: () -> Unit = {}) {
 
         Spacer(modifier = Modifier.height(60.dp))
 
-        CourseHeader()
+        CourseHeader(onFilterClicked, onChatClicked)
         // List of buddies
         for (buddy in buddies) {
             BuddyItem(

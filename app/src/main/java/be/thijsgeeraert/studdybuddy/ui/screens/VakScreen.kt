@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun VakkenScreen() {
+fun VakkenScreen(onGoNext: () -> Unit = {}) {
     // Replace with actual string resources
     val subjects = listOf("android", "bpm", "nederlands")
     val categories = listOf("Toegepaste informatica", "Autotechnologie", "Ecotechnologie")
@@ -73,14 +73,14 @@ fun VakkenScreen() {
             modifier = Modifier.fillMaxWidth()
         ) {
             Button(
-                onClick = { /* Handle go further action */ },
+                onClick = onGoNext,
                 modifier = Modifier.weight(1f),
                 colors = ButtonDefaults.buttonColors(Color.Red)
             ) {
                 Text(text = "Ga verder", color = Color.White)
             }
             Button(
-                onClick = { /* Handle cancel action */ },
+                onClick = onGoNext,
                 modifier = Modifier.weight(1f)
             ) {
                 Text(text = "annuleren", color = Color.Black)
