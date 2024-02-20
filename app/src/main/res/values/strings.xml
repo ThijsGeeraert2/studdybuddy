@@ -19,4 +19,7 @@
     <string name="family_name">Familie naam\n</string>
     <string name="go_further">Ga door\n</string>
     <string name="logo_description">Beschrijving vives logo</string>
+    <string name="direction">Richting</string>
+    <string name="subjects">vakken</string>
+    <string name="school">School</string>
 </resources>

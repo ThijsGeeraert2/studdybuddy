@@ -28,14 +28,14 @@ fun RegisterScreen(
     var subjects by remember { mutableStateOf("") }
     var direction by remember { mutableStateOf("") }
 
-    // Logo painter, replace R.drawable.logo with your actual logo resource
+    // Logo painter, replace R.drawable.logo_vives with your actual logo resource
     //val logo: Painter = painterResource(id = R.drawable.logo_vives)
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         // Header block
@@ -60,8 +60,7 @@ fun RegisterScreen(
             value = name,
             onValueChange = { name = it },
             label = { Text(stringResource(id = R.string.name)) },
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
+            singleLine = true
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -71,19 +70,47 @@ fun RegisterScreen(
             value = familyName,
             onValueChange = { familyName = it },
             label = { Text(stringResource(id = R.string.family_name)) },
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
+            singleLine = true
         )
 
-        // Repeat the pattern for school, subjects, and direction input fields
-        // ...
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // School input field
+        OutlinedTextField(
+            value = school,
+            onValueChange = { school = it },
+            label = { Text(stringResource(id = R.string.school)) },
+            singleLine = true
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Subject input field
+        OutlinedTextField(
+            value = subjects,
+            onValueChange = { subjects = it },
+            label = { Text(stringResource(id = R.string.subjects)) },
+            singleLine = true
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Direction input field
+        OutlinedTextField(
+            value = direction,
+            onValueChange = { direction = it },
+            label = { Text(stringResource(id = R.string.direction)) },
+            singleLine = true
+        )
 
         Spacer(modifier = Modifier.height(32.dp))
 
         // Registration button
         Button(
             onClick = { onRegisterClick(name, familyName, school, subjects, direction) },
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(48.dp),
             colors = ButtonDefaults.buttonColors(Color.Red)
         ) {
             Text(text = stringResource(id = R.string.go_further), fontSize = 18.sp)
