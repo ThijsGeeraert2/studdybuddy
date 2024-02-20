@@ -23,9 +23,13 @@
     <string name="subjects">vakken</string>
     <string name="school">School</string>
     <string name="home">Home</string>
-    <string name="find_buddy">Vind vriendje</string>
+    <string name="find_buddy">Vind buddy</string>
     <string name="find_mentor">vind mentor</string>
     <string name="become_mentor">word mentor</string>
     <string name="app_name">studdy buddy</string>
     <string name="back_button">back\n</string>
+    <string name="buddys">buddy\'s</string>
+    <string name="user_icon_description">user_icon_description</string>
+    <string name="star_icon_description">star_icon_description</string>
+    <string name="inbox">inbox</string>
 </resources>
