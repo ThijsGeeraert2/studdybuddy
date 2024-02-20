@@ -37,7 +37,7 @@ import be.thijsgeeraert.studdybuddy.ui.theme.StuddybuddyTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(
-    onConfirmClick: (String, String) -> Unit = { _, _ -> },
+    onConfirmClick: () -> Unit,
     onCancelClick: () -> Unit = {},
     onRegisterClick: () -> Unit = {}
 ) {
@@ -87,7 +87,7 @@ fun LoginScreen(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Button(
-                onClick = { onConfirmClick(username, password) },
+                onClick = { onConfirmClick() },
                 modifier = Modifier.weight(1f),
                 colors = ButtonDefaults.buttonColors(Color.Red) // Set the confirm button to red
             ) {
@@ -123,6 +123,6 @@ fun LoginScreen(
 @Composable
 fun PhotosGridScreenPreview() {
     StuddybuddyTheme {
-        LoginScreen()
+        //LoginScreen()
     }
 }
