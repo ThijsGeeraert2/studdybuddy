@@ -32,4 +32,8 @@
     <string name="user_icon_description">user_icon_description</string>
     <string name="star_icon_description">star_icon_description</string>
     <string name="inbox">inbox</string>
+    <string name="contact">Contact</string>
+    <string name="about_me">about me</string>
+    <string name="subjects_mentor">subjects mentor</string>
+    <string name="subjects_buddy">subjects buddy</string>
 </resources>
