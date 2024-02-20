@@ -6,7 +6,11 @@
     <string name="confirm">confirm</string>
     <string name="cancel">cancel</string>
     <string name="register">register</string>
-    <string name="additional_action">extra actie</string>
+    <string name="additional_action">register</string>
     <string name="go_on">go on</string>
     <string name="welcome">welkom</string>
+    <string name="name">Naam</string>
+    <string name="family_name">Familie naam\n</string>
+    <string name="go_further">Ga door\n</string>
+    <string name="logo_description">Beschrijving vives logo</string>
 </resources>
