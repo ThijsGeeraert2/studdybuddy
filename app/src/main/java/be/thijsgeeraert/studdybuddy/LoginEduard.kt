@@ -1,6 +1,6 @@
-package be.thijsgeeraert.studdybuddy.ui.screens
+package be.thijsgeeraert.studdybuddy
 
-import be.thijsgeeraert.studdybuddy.R
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -49,10 +49,13 @@ fun LoginPage(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = stringResource(id = R.string.login),
+            text = stringResource(id = R.string.welcome), // Change the string to "welcome"
             fontSize = 24.sp,
-            color = Color.Red,
-            modifier = Modifier.align(Alignment.CenterHorizontally)
+            color = Color.White, // Change text color to white
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.Red) // Add a red background
+                .padding(16.dp) // Add padding around the text
         )
 
         Spacer(modifier = Modifier.height(32.dp))
@@ -60,7 +63,7 @@ fun LoginPage(
         OutlinedTextField(
             value = username,
             onValueChange = { username = it },
-            label = { Text(stringResource(id = R.string.username)) },
+            label = { Text(stringResource(id = R.string.username)) }, // Change the string to "gebruikersnaam"
             singleLine = true
         )
 
@@ -69,7 +72,7 @@ fun LoginPage(
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
-            label = { Text(stringResource(id = R.string.password)) },
+            label = { Text(stringResource(id = R.string.password)) }, // Change the string to "wachtwoord"
             singleLine = true,
             visualTransformation = PasswordVisualTransformation()
         )
@@ -83,24 +86,32 @@ fun LoginPage(
             Button(
                 onClick = { onConfirmClick(username, password) },
                 modifier = Modifier.weight(1f),
+                colors = ButtonDefaults.buttonColors(Color.Red) // Set the confirm button to red
             ) {
-                Text(text = stringResource(id = R.string.confirm))
+                Text(text = stringResource(id = R.string.go_on)) // Change the string to "Ga verder"
             }
 
             Button(
                 onClick = onCancelClick,
                 modifier = Modifier.weight(1f),
+                colors = ButtonDefaults.buttonColors(Color.Gray) // Set the cancel button to gray
             ) {
-                Text(text = stringResource(id = R.string.cancel))
+                Text(text = stringResource(id = R.string.cancel)) // Keep the string as "annuleren"
             }
         }
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        ClickableText(
-            text = AnnotatedString(stringResource(id = R.string.register)),
-            onClick = { onRegisterClick() },
-            style = TextStyle(color = Color.Blue, textDecoration = TextDecoration.Underline)
-        )
+        // This would be the additional button shown in your screenshot, presumably for another action
+        Button(
+            onClick = { /* Handle click action */ },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(48.dp), // Match the height of the button in the screenshot
+            colors = ButtonDefaults.buttonColors(Color.Red) // Set the button to red
+        ) {
+            // The text of this button is not visible in the screenshot. Replace 'R.string.additional_action' with the correct string resource id.
+            Text(text = stringResource(id = R.string.additional_action), color = Color.White)
+        }
     }
 }

@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">studdybuddy</string>
+    <string name="login">login</string>
+    <string name="username">username</string>
+    <string name="password">password</string>
+    <string name="confirm">confirm</string>
+    <string name="cancel">cancel</string>
+    <string name="register">register</string>
+    <string name="additional_action">extra actie</string>
+    <string name="go_on">go on</string>
+    <string name="welcome">welkom</string>
 </resources>
