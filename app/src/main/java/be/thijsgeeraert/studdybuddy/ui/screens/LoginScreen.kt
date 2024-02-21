@@ -1,5 +1,6 @@
 package be.thijsgeeraert.studdybuddy.ui.screens
 
+import android.util.Log
 import androidx.compose.foundation.background
 import be.thijsgeeraert.studdybuddy.R
 import androidx.compose.foundation.layout.Arrangement
@@ -34,20 +35,25 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import be.thijsgeeraert.studdybuddy.ui.theme.GoodGreen
 import be.thijsgeeraert.studdybuddy.ui.theme.GoodGrey
 import be.thijsgeeraert.studdybuddy.ui.theme.GoodRed
 import be.thijsgeeraert.studdybuddy.ui.theme.StuddybuddyTheme
+import be.thijsgeeraert.studdybuddy.viewmodels.LoginVM
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen(
-    onConfirmClick: () -> Unit,
-    onCancelClick: () -> Unit = {},
-    onRegisterClick: () -> Unit = {}
+fun LoginScreen(loginVM : LoginVM = viewModel(),
+                onConfirmClick: () -> Unit,
+                onCancelClick: () -> Unit = {},
+                onRegisterClick: () -> Unit = {}
 ) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var incorrect by remember {
+        mutableStateOf(false)
+    };
 
     Column(
         modifier = Modifier
@@ -60,20 +66,23 @@ fun LoginScreen(
         Spacer(modifier = Modifier.height(32.dp))
 
         OutlinedTextField(
-            value = username,
-            onValueChange = { username = it },
+            value = loginVM.username,
+            onValueChange = { loginVM.updateUserName(it) },
             label = { Text(stringResource(id = R.string.username)) }, // Change the string to "gebruikersnaam"
-            singleLine = true
+            singleLine = true,
+            isError = incorrect,
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         OutlinedTextField(
-            value = password,
-            onValueChange = { password = it },
+            value = loginVM.password,
+            onValueChange = { loginVM.updatePassword(it) },
             label = { Text(stringResource(id = R.string.password)) }, // Change the string to "wachtwoord"
             singleLine = true,
-            visualTransformation = PasswordVisualTransformation()
+            visualTransformation = PasswordVisualTransformation(),
+            isError = incorrect,
+            supportingText = { if (incorrect) Text(text = "Login Verkeerd") }
         )
 
         Spacer(modifier = Modifier.height(24.dp))
@@ -83,7 +92,15 @@ fun LoginScreen(
             horizontalArrangement = Arrangement.spacedBy(25.dp)
         ) {
             Button(
-                onClick = { onConfirmClick() },
+                onClick = {
+                    if(loginVM.login()){
+                        onConfirmClick()
+                    }
+                    else{
+                        incorrect=true;
+                        Log.d("debug","$incorrect")
+                    }
+                          },
                 modifier = Modifier.weight(1f),
                 colors = ButtonDefaults.buttonColors(GoodRed) // Set the confirm button to red
             ) {
@@ -118,6 +135,8 @@ fun LoginScreen(
         }
     }
 }
+
+
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
