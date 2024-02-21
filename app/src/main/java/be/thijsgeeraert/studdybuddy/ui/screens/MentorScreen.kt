@@ -26,7 +26,7 @@ import be.thijsgeeraert.studdybuddy.data.Vak
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MentorScreen(mentors: List<User>, onclickDetail: () -> Unit = {}, onFilterClicked: () -> Unit= {}, onChatClicked: () -> Unit  = {}) {
+fun MentorScreen(mentors: List<User>, onclickDetail: (id: Int) -> Unit = {}, onFilterClicked: () -> Unit= {}, onChatClicked: () -> Unit  = {}) {
     // Replace with actual drawable and string resources
     val userIcon: Painter = painterResource(id = R.drawable.user)
     val starIcon: Painter = painterResource(id = R.drawable.sterreke_14)
@@ -54,7 +54,7 @@ fun MentorScreen(mentors: List<User>, onclickDetail: () -> Unit = {}, onFilterCl
                 rating = mentor.rating,
                 field = mentor.vakken.joinToString(", ") { it.naam },
                 starIcon = starIcon,
-                onClick = onclickDetail
+                onClick = { onclickDetail(mentor.id) }
             )
             Spacer(modifier = Modifier.height(8.dp))
         }
@@ -137,7 +137,9 @@ fun CourseHeader(
         Text(
             text = courseName,
             fontSize = 18.sp,
-            modifier = Modifier.weight(1f).padding(horizontal = 8.dp)
+            modifier = Modifier
+                .weight(1f)
+                .padding(horizontal = 8.dp)
         )
 
 

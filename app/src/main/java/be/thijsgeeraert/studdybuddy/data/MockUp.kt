@@ -49,6 +49,7 @@ object MockUp {
     fun getUsers(): List<User> {
         return listOf(
             User(
+                0,
                 "Jan",
                 "Jansen",
                 listOf(Vak("Wiskunde", 3)),
@@ -57,12 +58,14 @@ object MockUp {
                 4
             ),
             User(
+                1,
                 "Kees",
                 "Klaassen",
                 listOf(Vak("Nederlands", 2)),
                 listOf(Vak("Biologie", 1), Vak("Engels", 1)),
                 listOf(
                     User(
+                        1,
                         "Jan",
                         "Jansen",
                         listOf(Vak("Wiskunde", 1)),
@@ -74,6 +77,7 @@ object MockUp {
                 2
             ),
             User(
+                2,
                 "Sarah",
                 "Sanders",
                 emptyList(),
@@ -82,18 +86,21 @@ object MockUp {
                 4
             ),
             User(
+                3,
                 "Emma",
                 "Evans",
                 emptyList(),
                 listOf(Vak("Wiskunde", 1), Vak("Nederlands", 2)),
                 listOf(
                     User(
+                        1,
                         "Kees",
                         "Klaassen",
                         listOf(Vak("Nederlands", 1)),
                         listOf(Vak("Biologie", 1), Vak("Engels", 2)),
                         listOf(
                             User(
+                                0,
                                 "Jan",
                                 "Jansen",
                                 listOf(Vak("Wiskunde", 1)),
@@ -122,6 +129,7 @@ object MockUp {
 }
 
 data class User(
+    val id: Int,
     val voornaam: String,
     val achternaam: String,
     val isMentorVoor: List<Vak>,

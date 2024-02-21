@@ -24,10 +24,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import be.thijsgeeraert.studdybuddy.data.MockUp.getMessages
 import be.thijsgeeraert.studdybuddy.data.MockUp.getUsers
 import be.thijsgeeraert.studdybuddy.ui.screens.BuddyDetailScreen
@@ -63,17 +65,15 @@ fun StuddyBuddyNavigation() {
 
     //navigatie
     val backStackEntry by navController.currentBackStackEntryAsState()
-    val currentScreen = StuddyBuddyScreen.valueOf(
-        backStackEntry?.destination?.route ?: StuddyBuddyScreen.LoginScreen.name
-    )
-
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentScreen = navBackStackEntry?.destination?.route ?: StuddyBuddyScreen.LoginScreen.name
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             MarsTopAppBar(
-                currentScreen = currentScreen,
+                currentScreenTitle = stringResource(id = StuddyBuddyScreen.valueOf(currentScreen.replace("/{id_key}", "")).displayName),
                 canNavigateBack = navController.previousBackStackEntry != null,
                 navigateUp = { navController.popBackStack() },
                 scrollBehavior = scrollBehavior
@@ -95,16 +95,20 @@ fun StuddyBuddyNavigation() {
                 HomeScreen(onFindBuddyClick = {navController.navigate(StuddyBuddyScreen.BuddyScreen.name)}, onFindMentorClick = {navController.navigate(StuddyBuddyScreen.BijlesScreen.name)})
             }
             composable(StuddyBuddyScreen.BuddyScreen.name) {
-                BuddyScreen(getUsers(), onclickDetail = { navController.navigate(StuddyBuddyScreen.BuddyDetailScreen.name)}, onFilterClicked = { navController.navigate(StuddyBuddyScreen.VakScreen.name)} ,onChatClicked = {navController.navigate(StuddyBuddyScreen.InboxScreen.name)})
+                BuddyScreen(getUsers(), onclickDetail = { navController.navigate(StuddyBuddyScreen.BuddyDetailScreen.name + "/$it")}, onFilterClicked = { navController.navigate(StuddyBuddyScreen.VakScreen.name)} ,onChatClicked = {navController.navigate(StuddyBuddyScreen.InboxScreen.name)})
             }
-            composable(StuddyBuddyScreen.BuddyDetailScreen.name) {
-                BuddyDetailScreen()
+            composable(
+                route = StuddyBuddyScreen.BuddyDetailScreen.name + "/{id_key}",
+                arguments = listOf(navArgument("id_key") { type = NavType.IntType })
+            ) {
+                val userId = navBackStackEntry?.arguments?.getInt("id_key")
+                BuddyDetailScreen(userId ?: 0)
             }
             composable(StuddyBuddyScreen.VakScreen.name) {
                 VakkenScreen(onGoNext = { navController.navigate(StuddyBuddyScreen.BuddyScreen.name)})
             }
             composable(StuddyBuddyScreen.BijlesScreen.name) {
-                MentorScreen(getUsers().filter { u -> u.isMentorVoor.isNotEmpty() }, onclickDetail = { navController.navigate(StuddyBuddyScreen.BuddyDetailScreen.name)}, onFilterClicked = { navController.navigate(StuddyBuddyScreen.VakScreen.name)} ,onChatClicked = {navController.navigate(StuddyBuddyScreen.InboxScreen.name)})
+                MentorScreen(getUsers().filter { u -> u.isMentorVoor.isNotEmpty() }, onclickDetail = { navController.navigate(StuddyBuddyScreen.BuddyDetailScreen.name + "/$it")}, onFilterClicked = { navController.navigate(StuddyBuddyScreen.VakScreen.name)} ,onChatClicked = {navController.navigate(StuddyBuddyScreen.InboxScreen.name)})
             }
             composable(StuddyBuddyScreen.InboxScreen.name) {
                 InboxScreen(getMessages())
@@ -117,7 +121,7 @@ fun StuddyBuddyNavigation() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MarsTopAppBar(
-    currentScreen: StuddyBuddyScreen,
+    currentScreenTitle: String,
     canNavigateBack: Boolean,
     navigateUp: () -> Unit = {},
     scrollBehavior: TopAppBarScrollBehavior,
@@ -128,7 +132,7 @@ fun MarsTopAppBar(
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = GoodRed, titleContentColor = Color.White, actionIconContentColor = Color.White, navigationIconContentColor = Color.White),
         title = {
             Text(
-                text = stringResource(currentScreen.displayName),
+                text = currentScreenTitle,
                 style = MaterialTheme.typography.headlineSmall,
             )
         },
@@ -148,22 +152,22 @@ fun MarsTopAppBar(
 
 @Composable
 fun StuddyBuddyBottomBar(
-    currentScreen: StuddyBuddyScreen,
+    currentScreen: String,
     onItemClick: (route: String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    AnimatedVisibility(visible = currentScreen != StuddyBuddyScreen.LoginScreen) {
+    AnimatedVisibility(visible = currentScreen != StuddyBuddyScreen.LoginScreen.name) {
         NavigationBar {
-            val homeTitle = stringResource(id = R.string.home_screen)
+            val homeTitle = StuddyBuddyScreen.HomeScreen.name
             NavigationBarItem(
-                selected = homeTitle == stringResource(id = currentScreen.displayName),
+                selected = homeTitle == currentScreen,
                 onClick = {
-                    if (currentScreen != StuddyBuddyScreen.HomeScreen) {
+                    if (currentScreen != StuddyBuddyScreen.HomeScreen.name) {
                         onItemClick(StuddyBuddyScreen.HomeScreen.name)
                     }
                           },
                 icon = {
-                    if (homeTitle == stringResource(id = currentScreen.displayName)) {
+                    if (homeTitle == currentScreen) {
                         Icon(
                             imageVector = Icons.Filled.Home,
                             contentDescription = homeTitle
@@ -176,16 +180,16 @@ fun StuddyBuddyBottomBar(
                     }
                 }
             )
-            val inboxTitle = stringResource(id = R.string.inbox_screen)
+            val inboxTitle = StuddyBuddyScreen.InboxScreen.name
             NavigationBarItem(
-                selected = inboxTitle == stringResource(id = currentScreen.displayName),
+                selected = inboxTitle == currentScreen,
                 onClick = {
-                    if (currentScreen != StuddyBuddyScreen.InboxScreen) {
+                    if (currentScreen != StuddyBuddyScreen.InboxScreen.name) {
                         onItemClick(StuddyBuddyScreen.InboxScreen.name)
                     }
                           },
                 icon = {
-                    if (inboxTitle == stringResource(id = currentScreen.displayName)) {
+                    if (inboxTitle == StuddyBuddyScreen.InboxScreen.name) {
                         Icon(
                             imageVector = Icons.Filled.Email,
                             contentDescription = inboxTitle

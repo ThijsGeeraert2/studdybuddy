@@ -28,7 +28,7 @@ data class Buddy(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BuddyScreen(buddies: List<User>, onclickDetail: () -> Unit = {}, onFilterClicked: () -> Unit= {}, onChatClicked: () -> Unit  = {}) {
+fun BuddyScreen(buddies: List<User>, onclickDetail: (id: Int) -> Unit = {}, onFilterClicked: () -> Unit= {}, onChatClicked: () -> Unit  = {}) {
     // Replace with actual icons
     val userIcon: Painter = painterResource(id = R.drawable.user)
     val starIcon: Painter = painterResource(id = R.drawable.sterreke_14)
@@ -49,11 +49,11 @@ fun BuddyScreen(buddies: List<User>, onclickDetail: () -> Unit = {}, onFilterCli
         for (buddy in buddies) {
             BuddyItem(
                 userIcon = userIcon,
-                name = buddy.voornaam,
+                name = buddy.voornaam + " " + buddy.achternaam,
                 rating = buddy.rating,
                 field = buddy.vakken,
                 starIcon = starIcon,
-                onClick = onclickDetail
+                onClick = { onclickDetail(buddy.id) }
             )
         }
     }

@@ -20,17 +20,20 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import be.thijsgeeraert.studdybuddy.R
+import be.thijsgeeraert.studdybuddy.data.MockUp
+import be.thijsgeeraert.studdybuddy.data.User
 import be.thijsgeeraert.studdybuddy.ui.theme.GoodRed
 
 @Preview(showBackground = true)
 @Composable
 fun PreviewBuddyDetailScreen() {
-    BuddyDetailScreen()
+    BuddyDetailScreen(1)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BuddyDetailScreen() {
+fun BuddyDetailScreen(userId: Int) {
+    val user = MockUp.getUsers()[userId]
     // Replace with actual drawable and string resources
     val userIcon: Painter = painterResource(id = R.drawable.user)
     val starIcon: Painter = painterResource(id = R.drawable.sterreke_14)
@@ -43,7 +46,7 @@ fun BuddyDetailScreen() {
     ) {
         Spacer(modifier = Modifier.height(60.dp))
         Text(
-            text = "Eduard Vandamme",
+            text = user.voornaam + " " + user.achternaam,
             fontWeight = FontWeight.Bold,
             fontSize = 24.sp
         )
