@@ -34,9 +34,9 @@
     <string name="star_icon_description">star_icon_description</string>
     <string name="inbox">inbox</string>
     <string name="contact">Contact</string>
-    <string name="about_me">about me</string>
-    <string name="subjects_mentor">subjects mentor</string>
-    <string name="subjects_buddy">subjects buddy</string>
+    <string name="about_me">Over mij</string>
+    <string name="subjects_mentor">Mentor vakken</string>
+    <string name="subjects_buddy">Buddy vakken</string>
     <string name="mentors">mentors</string>
     <string name="cd_filter_icon">cd filter icon</string>
     <string name="cd_chat_icon">cd chat icon</string>
