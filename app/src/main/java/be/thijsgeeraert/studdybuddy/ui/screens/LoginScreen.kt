@@ -49,8 +49,6 @@ fun LoginScreen(loginVM : LoginVM = viewModel(),
                 onCancelClick: () -> Unit = {},
                 onRegisterClick: () -> Unit = {}
 ) {
-    var username by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
     var incorrect by remember {
         mutableStateOf(false)
     };
